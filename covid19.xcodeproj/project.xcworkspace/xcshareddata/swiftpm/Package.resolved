@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/Urkman/SwiftUICharts",
+        "state": {
+          "branch": "main",
+          "revision": "c5278de67a069cdcd84fcf0800d4e11ed2d8d997",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
