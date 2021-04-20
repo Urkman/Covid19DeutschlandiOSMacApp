@@ -18,7 +18,7 @@ struct CountyDetailsView: View {
     @State private var chartAmount = 1
 
     var casesData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? Application.Settings.chartMinValue : Application.Settings.chartMaxValue
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
         let color = chartType == 0 ? Color.systemYellow : chartType == 1 ? Color.systemRed : Color.systemGreen
         let casesData = dataStore.countyCasesHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 1)) }
         
@@ -26,7 +26,7 @@ struct CountyDetailsView: View {
     }
 
     var deathsData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? Application.Settings.chartMinValue : Application.Settings.chartMaxValue
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
         let color = chartType == 0 ? Color.systemYellow : chartType == 1 ? Color.systemRed : Color.systemGreen
         let deathsData = dataStore.countyDeathsHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 2)) }
 
@@ -34,7 +34,7 @@ struct CountyDetailsView: View {
     }
 
     var recoveredData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? Application.Settings.chartMinValue : Application.Settings.chartMaxValue
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
         let color = chartType == 0 ? Color.systemYellow : chartType == 1 ? Color.systemRed : Color.systemGreen
         let recoveredData = dataStore.countyRecoveredHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 3)) }
 
@@ -143,8 +143,8 @@ struct CountyDetailsView: View {
                                     .font(.title3)
                                 
                                 Picker(selection: $chartAmount, label: Text("")) {
-                                    Text("\(Application.Settings.chartMinValue) Tage").tag(1)
-                                    Text("\(Application.Settings.chartMaxValue) Tage").tag(2)
+                                    Text("15").tag(1)
+                                    Text("60").tag(2)
                                     Text("Alle").tag(0)
                                 }.pickerStyle(SegmentedPickerStyle())
                             }

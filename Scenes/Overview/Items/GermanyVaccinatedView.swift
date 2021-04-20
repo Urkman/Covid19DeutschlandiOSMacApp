@@ -38,7 +38,7 @@ struct GermanyVaccinatedView: View {
                     Spacer()
                     VerticalItemView(leftText: "Differenz", rightText: dataStore.country.vaccinatedSeccondDifferenceFormatted, color: Color.systemGreen)
                     Spacer()
-                    VerticalItemView(leftText: "Quote", rightText: dataStore.country.vaccinatedSecondFormatted, color: Color.systemGreen)
+                    VerticalItemView(leftText: "Quote", rightText: dataStore.country.vaccinatedSecondQuoteFormatted, color: Color.systemGreen)
                     Spacer()
                 }
             }

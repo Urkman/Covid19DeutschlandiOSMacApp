@@ -17,7 +17,7 @@ struct ProvinceCharItemView: View {
     @State private var chartAmount = 1
 
     var casesData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 8 : chartAmount == 2 ? 15 : chartAmount == 3 ? 30 : chartAmount == 4 ? 45 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
         let color = Color.systemYellow
         let casesData = dataStore.provinceCasesHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 1)) }
         
@@ -25,7 +25,7 @@ struct ProvinceCharItemView: View {
     }
 
     var deathsData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 8 : chartAmount == 2 ? 15 : chartAmount == 3 ? 30 : chartAmount == 4 ? 45 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
         let color = Color.systemRed
         let deathsData = dataStore.provinceDeathsHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 2)) }
 
@@ -33,7 +33,7 @@ struct ProvinceCharItemView: View {
     }
 
     var vaccinatedData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 8 : chartAmount == 2 ? 15 : chartAmount == 3 ? 30 : chartAmount == 4 ? 45 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
         let color = Color.systemGreen
         let recoveredData = dataStore.provinceVaccinatedHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0, label: "", legend: Legend(color: color, label: "", order: 3)) }
 
@@ -65,11 +65,8 @@ struct ProvinceCharItemView: View {
                     .font(.title3)
                 
                 Picker(selection: $chartAmount, label: Text("")) {
-                    Text("8").tag(1)
-                    Text("15").tag(2)
-                    Text("30").tag(3)
-                    Text("45").tag(4)
-                    Text("60").tag(5)
+                    Text("15").tag(1)
+                    Text("60").tag(2)
                     Text("Alle").tag(0)
                 }.pickerStyle(SegmentedPickerStyle())
             }

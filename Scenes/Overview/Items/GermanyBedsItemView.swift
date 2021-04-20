@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GermanyBedsItemView: View {
     @ObservedObject private var dataStore = DataStore.shared
-    
+    @State var showBeds: Bool = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack(alignment: .center, spacing: 5) {
@@ -17,15 +18,17 @@ struct GermanyBedsItemView: View {
                     .font(Application.UI.Fonts.header)
                 Spacer()
                 Button(action: {
-                        print("test")
-                    
+                    showBeds.toggle()
                 }, label: {
                     Image(systemName: "chevron.right")
                 }).foregroundColor(.label)
             }
             .padding(.horizontal, 10)
             .padding(.top, 10)
-            
+            .sheet(isPresented: $showBeds) {
+                BedsView()
+            }
+
             HStack {
                 Spacer()
                 VerticalItemView(leftText: "Gesamt", rightText: dataStore.country.bedsTotalFormatted, color: Color.systemYellow)
