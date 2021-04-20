@@ -597,13 +597,8 @@ extension DataStore {
         }
         
         for item in self.impfHistoryData.filter({ $0.bundesland == "Gesamt" }) {
-            let impfValue = Double(item.impfungenKumulativ ?? 0) + Double(item.zweitimpfungenKumulativ ?? 0)
-            if self.countryVaccinatedHistoryList.count == 0 {
-                self.countryVaccinatedHistoryList.append(impfValue)
-            } else {
-                let sum = self.countryVaccinatedHistoryList.reduce(0, +)
-                self.countryVaccinatedHistoryList.append(impfValue - sum)
-            }
+            let impfValue = Double(item.difference ?? 0) + Double(item.zweitImpDifferenz ?? 0)
+            self.countryVaccinatedHistoryList.append(impfValue)
         }
 
         if countryCasesHistoryList.indices.contains(6) {
