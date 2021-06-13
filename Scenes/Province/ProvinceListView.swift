@@ -18,7 +18,7 @@ struct ProvinceListView: View {
     
     var body: some View {
         ZStack {
-            Color.systemBackground
+            Color.background
                 .ignoresSafeArea()
             
             if dataStore.isLoading {
@@ -38,7 +38,7 @@ struct ProvinceListView: View {
                                         .onTapGesture {
                                             self.selectedProvice = item
                                         }
-                                        .background(Color.secondarySystemBackground)
+                                        .background(Color.cardBackground)
                                         .cornerRadius(15)
                                 }
                             }
@@ -56,7 +56,7 @@ struct ProvinceListView: View {
                                         .onTapGesture {
                                             self.selectedProvice = item
                                         }
-                                        .background(Color.secondarySystemBackground)
+                                        .background(Color.cardBackground)
                                         .cornerRadius(15)
                                 }
                             }

@@ -54,7 +54,7 @@ struct GermanyItemView: View {
             }
             .padding(.bottom, 10)
         }
-        .background(Color.secondarySystemBackground)
+        .background(Color.cardBackground)
         .cornerRadius(15)
     }
 }

@@ -18,7 +18,7 @@ struct CountyDetailsView: View {
     @State private var chartAmount = 1
 
     var casesData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = chartType == 0 ? Color.systemYellow : chartType == 1 ? Color.systemRed : Color.systemGreen
         let casesData = dataStore.countyCasesHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 1)) }
         
@@ -26,23 +26,15 @@ struct CountyDetailsView: View {
     }
 
     var deathsData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = chartType == 0 ? Color.systemYellow : chartType == 1 ? Color.systemRed : Color.systemGreen
         let deathsData = dataStore.countyDeathsHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 2)) }
 
         return deathsData
     }
 
-    var recoveredData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
-        let color = chartType == 0 ? Color.systemYellow : chartType == 1 ? Color.systemRed : Color.systemGreen
-        let recoveredData = dataStore.countyRecoveredHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 3)) }
-
-        return recoveredData
-    }
-    
     var cases7100kData:[DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? Application.Settings.chartMinValue : Application.Settings.chartMaxValue
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
 
         var values: [DataPoint] = []
         for (index, _) in dataStore.countyCasesHistoryList.enumerated() {
@@ -61,7 +53,7 @@ struct CountyDetailsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.systemBackground
+                Color.background
                     .ignoresSafeArea()
                 
                 ScrollView {
@@ -107,7 +99,7 @@ struct CountyDetailsView: View {
                             }
                             .padding([.horizontal, .bottom], 10)
                         }
-                        .background(Color.secondarySystemBackground)
+                        .background(Color.cardBackground)
                         .cornerRadius(15)
                         .padding(10)
                         
@@ -133,7 +125,7 @@ struct CountyDetailsView: View {
                             }
                             .padding([.horizontal, .bottom], 10)
                         }
-                        .background(Color.secondarySystemBackground)
+                        .background(Color.cardBackground)
                         .cornerRadius(15)
                         .padding(10)
 
@@ -144,27 +136,27 @@ struct CountyDetailsView: View {
                                 
                                 Picker(selection: $chartAmount, label: Text("")) {
                                     Text("15").tag(1)
-                                    Text("60").tag(2)
+                                    Text("30").tag(2)
+                                    Text("60").tag(3)
                                     Text("Alle").tag(0)
                                 }.pickerStyle(SegmentedPickerStyle())
                             }
                             .padding([.horizontal, .top], 10)
                             .padding(.bottom, 10)
 
-                            BarChartView(dataPoints: chartType == 0 ? casesData : chartType == 1 ? deathsData: chartType == 2 ? recoveredData : cases7100kData)
+                            BarChartView(dataPoints: chartType == 0 ? casesData : chartType == 1 ? deathsData: cases7100kData)
                                 .frame(maxWidth: UIScreen.main.bounds.width - 70, maxHeight: 150)
                                 .padding(.horizontal, 10)
                             
                             Picker(selection: $chartType, label: Text("")) {
                                 Text("Fälle").tag(0)
                                 Text("Tote").tag(1)
-                                Text("Genesen").tag(2)
                                 Text("Inzidenz").tag(3)
                             }.pickerStyle(SegmentedPickerStyle())
                             .padding([.horizontal, .bottom], 10)
                         }
                         .chartStyle(BarChartStyle(axisLeadingPadding: 5.0, gridColor: Color.label, showLegends: false, barsCornerRadius: Application.Settings.chartRoundedCorner, barsCorners: [.topLeft, .topRight]))
-                        .background(Color.secondarySystemBackground)
+                        .background(Color.cardBackground)
                         .cornerRadius(15)
                         .padding(10)
 
@@ -207,7 +199,7 @@ struct CountyDetailsView: View {
 
                             Spacer()
                         }
-                        .background(Color.secondarySystemBackground)
+                        .background(Color.cardBackground)
                         .cornerRadius(15)
                         .padding(10)
                         

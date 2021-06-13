@@ -13,7 +13,7 @@ struct CountryWidgetView : View {
     
     var body: some View {
         ZStack {
-            Color.secondarySystemBackground
+            Color.widgetBackground
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 5) {

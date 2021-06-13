@@ -17,7 +17,7 @@ struct BedsView: View {
     
     var body: some View {
         ZStack {
-            Color.systemBackground
+            Color.background
                 .ignoresSafeArea()
             
             if dataStore.isLoading {
@@ -52,7 +52,7 @@ struct BedsView: View {
                         }
                         .padding([.horizontal, .bottom], 10)
                     }
-                    .background(Color.secondarySystemBackground)
+                    .background(Color.cardBackground)
                     .cornerRadius(15)
                     .padding(.horizontal, 10)
                     .padding([.top], 20)
@@ -68,7 +68,7 @@ struct BedsView: View {
                                 .onTapGesture {
                                     self.selectedProvice = item
                                 }
-                                .background(Color.secondarySystemBackground)
+                                .background(Color.cardBackground)
                                 .cornerRadius(15)
                         }
                     }

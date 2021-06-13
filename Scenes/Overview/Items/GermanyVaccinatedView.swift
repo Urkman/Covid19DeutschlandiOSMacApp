@@ -45,7 +45,7 @@ struct GermanyVaccinatedView: View {
             .padding(.horizontal, 10)
         }
         .padding(.bottom, 10)
-        .background(Color.secondarySystemBackground)
+        .background(Color.cardBackground)
         .cornerRadius(15)
     }
 }

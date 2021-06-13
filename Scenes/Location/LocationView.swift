@@ -16,7 +16,7 @@ struct LocationView: View {
     
     var body: some View {
         ZStack {
-            Color.systemBackground
+            Color.background
                 .ignoresSafeArea()
             
             if viewModel.isLoading {
@@ -83,7 +83,7 @@ struct LocationView: View {
                             }
                             .padding([.horizontal, .bottom], 10)
                         }
-                        .background(Color.secondarySystemBackground)
+                        .background(Color.cardBackground)
                         .cornerRadius(15)
                         .padding(10)
                         
@@ -134,7 +134,7 @@ struct LocationView: View {
                             }
                             .padding([.horizontal, .bottom], 10)
                         }
-                        .background(Color.secondarySystemBackground)
+                        .background(Color.cardBackground)
                         .cornerRadius(15)
                         .padding(10)
                     }

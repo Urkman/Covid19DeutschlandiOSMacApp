@@ -10,6 +10,7 @@ import SwiftUICharts
 
 struct OverviewView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject private var dataStore = DataStore.shared
     
     let columns = [
@@ -18,7 +19,7 @@ struct OverviewView: View {
     
     var body: some View {
         ZStack {
-            Color.systemBackground
+            Color.background
                 .ignoresSafeArea()
             
             if dataStore.isLoading {

@@ -23,7 +23,7 @@ struct ProvinceDetailsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.systemBackground
+                Color.background
                     .ignoresSafeArea()
                 
                 ScrollView {
@@ -50,7 +50,7 @@ struct ProvinceDetailsView: View {
                                 ForEach(dataStore.countyList.filter({ $0.province == province.name })) { item in
                                     CountyListItemView(county: item)
                                 }
-                                .background(Color.secondarySystemBackground)
+                                .background(Color.cardBackground)
                                 .cornerRadius(15)
                             }
                             .padding([.horizontal, .bottom], 10)
@@ -79,7 +79,7 @@ struct ProvinceDetailsView: View {
                                 ForEach(dataStore.countyList.filter({ $0.province == province.name })) { item in
                                     CountyListItemView(county: item)
                                 }
-                                .background(Color.secondarySystemBackground)
+                                .background(Color.cardBackground)
                                 .cornerRadius(15)
                             }
                             .padding([.horizontal, .bottom], 10)

@@ -19,7 +19,7 @@ struct CountyListView: View {
     
     var body: some View {
         ZStack {
-            Color.systemBackground
+            Color.background
                 .ignoresSafeArea()
             
             if dataStore.isLoading {
@@ -41,7 +41,7 @@ struct CountyListView: View {
                                     .onTapGesture {
                                         self.selectedCounty = item
                                     }
-                                    .background(Color.secondarySystemBackground)
+                                    .background(Color.cardBackground)
                                     .cornerRadius(15)
                             }
                         }

@@ -17,7 +17,7 @@ struct ProvinceCharItemView: View {
     @State private var chartAmount = 1
 
     var casesData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = Color.systemYellow
         let casesData = dataStore.provinceCasesHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 1)) }
         
@@ -25,7 +25,7 @@ struct ProvinceCharItemView: View {
     }
 
     var deathsData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = Color.systemRed
         let deathsData = dataStore.provinceDeathsHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 2)) }
 
@@ -33,7 +33,7 @@ struct ProvinceCharItemView: View {
     }
 
     var vaccinatedData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = Color.systemGreen
         let recoveredData = dataStore.provinceVaccinatedHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0, label: "", legend: Legend(color: color, label: "", order: 3)) }
 
@@ -41,7 +41,7 @@ struct ProvinceCharItemView: View {
     }
 
     var cases7100kData:[DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 8 : chartAmount == 2 ? 15 : chartAmount == 3 ? 30 : chartAmount == 4 ? 45 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
 
         var values: [DataPoint] = []
         for (index, _) in dataStore.provinceCasesHistoryList.enumerated() {
@@ -66,7 +66,8 @@ struct ProvinceCharItemView: View {
                 
                 Picker(selection: $chartAmount, label: Text("")) {
                     Text("15").tag(1)
-                    Text("60").tag(2)
+                    Text("30").tag(2)
+                    Text("60").tag(3)
                     Text("Alle").tag(0)
                 }.pickerStyle(SegmentedPickerStyle())
             }
@@ -81,12 +82,11 @@ struct ProvinceCharItemView: View {
                 Text("Fälle").tag(0)
                 Text("Tote").tag(1)
                 Text("Inzidenz").tag(2)
-                Text("Impfungen").tag(3)
             }.pickerStyle(SegmentedPickerStyle())
             .padding([.horizontal, .bottom], 10)
         }
         .chartStyle(BarChartStyle(showAxis: false, gridColor: Color.label, showLegends: false, barsCornerRadius: Application.Settings.chartRoundedCorner, barsCorners: [.topLeft, .topRight]))
-        .background(Color.secondarySystemBackground)
+        .background(Color.cardBackground)
         .cornerRadius(15)
     }
 }

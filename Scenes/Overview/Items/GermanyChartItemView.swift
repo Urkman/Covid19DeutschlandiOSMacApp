@@ -15,7 +15,7 @@ struct GermanyChartItemView: View {
     @State private var chartAmount = 1
     
     var casesData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = Color.systemYellow
         let casesData = dataStore.countryCasesHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 1)) }
         
@@ -23,7 +23,7 @@ struct GermanyChartItemView: View {
     }
     
     var deathsData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = Color.systemRed
         let deathsData = dataStore.countryDeathsHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0.value, label: "", legend: Legend(color: color, label: "", order: 2)) }
         
@@ -31,7 +31,7 @@ struct GermanyChartItemView: View {
     }
     
     var vaccinatedData: [DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
         let color = Color.systemGreen
         let recoveredData = dataStore.countryVaccinatedHistoryList.reversed().prefix(maxCount).reversed().map { DataPoint(value: $0, label: "", legend: Legend(color: color, label: "", order: 3)) }
         
@@ -39,7 +39,7 @@ struct GermanyChartItemView: View {
     }
     
     var cases7100kData:[DataPoint] {
-        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 60 : 60
+        let maxCount = chartAmount == 0 ? 1000 : chartAmount == 1 ? 15 : chartAmount == 2 ? 30 : 60
 
         var values: [DataPoint] = []
         for (index, _) in dataStore.countryCasesHistoryList.enumerated() {
@@ -65,7 +65,8 @@ struct GermanyChartItemView: View {
                 
                 Picker(selection: $chartAmount, label: Text("")) {
                     Text("15").tag(1)
-                    Text("60").tag(2)
+                    Text("30").tag(2)
+                    Text("60").tag(3)
                     Text("Alle").tag(0)
                 }.pickerStyle(SegmentedPickerStyle())
             }
@@ -79,13 +80,12 @@ struct GermanyChartItemView: View {
                 Text("Fälle").tag(0)
                 Text("Tote").tag(1)
                 Text("Inzidenz").tag(2)
-                Text("Impfungen").tag(3)
             }.pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
         }
         .chartStyle(BarChartStyle(showAxis: false, gridColor: Color.label, showLegends: false, barsCornerRadius: Application.Settings.chartRoundedCorner, barsCorners: [.topLeft, .topRight]))
-        .background(Color.secondarySystemBackground)
+        .background(Color.cardBackground)
         .cornerRadius(15)
     }
 }

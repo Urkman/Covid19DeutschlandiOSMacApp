@@ -12,13 +12,13 @@ extension Color {
     static let lightText = Color(UIColor.lightText)
     static let darkText = Color(UIColor.darkText)
     static let placeholderText = Color(UIColor.placeholderText)
-
+    
     // MARK: - Label Colors
     static let label = Color(UIColor.label)
     static let secondaryLabel = Color(UIColor.secondaryLabel)
     static let tertiaryLabel = Color(UIColor.tertiaryLabel)
     static let quaternaryLabel = Color(UIColor.quaternaryLabel)
-
+    
     // MARK: - Background Colors
     static let systemBackground = Color(UIColor.systemBackground)
     static let secondarySystemBackground = Color(UIColor.secondarySystemBackground)
@@ -58,6 +58,16 @@ extension Color {
     static let systemRed = Color(UIColor.systemRed)
     static let systemTeal = Color(UIColor.systemTeal)
     static let systemIndigo = Color(UIColor.systemIndigo)
+    
+    
+    static var background: Color {
+        Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground })
+    }
+    static var cardBackground: Color {
+        Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor.secondarySystemBackground : UIColor.systemBackground })
+    }
+
+    static let widgetBackground = Color.white.opacity(0.5)
 }
 
 extension Color {

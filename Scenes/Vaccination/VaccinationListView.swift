@@ -18,7 +18,7 @@ struct VaccinationListView: View {
     
     var body: some View {
         ZStack {
-            Color.systemBackground
+            Color.background
                 .ignoresSafeArea()
             
             if dataStore.isLoading {
@@ -41,7 +41,7 @@ struct VaccinationListView: View {
                                         .onTapGesture {
                                             self.selectedProvice = item
                                         }
-                                        .background(Color.secondarySystemBackground)
+                                        .background(Color.cardBackground)
                                         .cornerRadius(10)
                                 }
                             }
@@ -61,7 +61,7 @@ struct VaccinationListView: View {
                                         .onTapGesture {
                                             self.selectedProvice = item
                                         }
-                                        .background(Color.secondarySystemBackground)
+                                        .background(Color.cardBackground)
                                         .cornerRadius(15)
                                 }
                             }
