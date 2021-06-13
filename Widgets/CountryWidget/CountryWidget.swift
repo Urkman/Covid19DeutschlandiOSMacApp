@@ -41,6 +41,7 @@ struct CountryWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: CountryProvider()) { entry in
             CountryWidgetView(entry: entry)
+                .background(Color.widgetBackground)
         }
         .supportedFamilies([.systemSmall, .systemMedium])
         .configurationDisplayName("Deutschland Widget")

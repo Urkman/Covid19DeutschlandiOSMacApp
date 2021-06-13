@@ -67,7 +67,7 @@ extension Color {
         Color(UIColor { $0.userInterfaceStyle == .dark ? UIColor.secondarySystemBackground : UIColor.systemBackground })
     }
 
-    static let widgetBackground = Color.white.opacity(0.5)
+    static let widgetBackground = Color.background
 }
 
 extension Color {
